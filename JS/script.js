@@ -4,6 +4,7 @@ const scoreElement = document.querySelector('.score');
 const highScoreElement = document.querySelector('.high-score');
 const controls = document.querySelectorAll('.icon__controls');
 const GRID_SIZE = Number.parseInt(getComputedStyle(document.documentElement).getPropertyValue('--grid-size'), 10);
+const SWIPE_THRESHOLD = 24;
 // Paleta usada para sortear a cor de cada novo sapo.
 const frogColors = ['green', 'yellow', 'orange', 'blue', 'purple', 'red', 'pink'];
 const snakeSegments = [];
@@ -63,6 +64,37 @@ const changeDirection = (e) => {
         velocityY = 0;
     }
 };
+
+// Permite trocar a direção deslizando o dedo sobre o tabuleiro.
+let swipeStartX = null;
+let swipeStartY = null;
+
+playBoard.addEventListener('pointerdown', (event) => {
+    swipeStartX = event.clientX;
+    swipeStartY = event.clientY;
+    playBoard.setPointerCapture(event.pointerId);
+});
+
+playBoard.addEventListener('pointerup', (event) => {
+    if (swipeStartX === null || swipeStartY === null) return;
+
+    const deltaX = event.clientX - swipeStartX;
+    const deltaY = event.clientY - swipeStartY;
+    swipeStartX = null;
+    swipeStartY = null;
+
+    if (Math.max(Math.abs(deltaX), Math.abs(deltaY)) < SWIPE_THRESHOLD) return;
+
+    const key = Math.abs(deltaX) > Math.abs(deltaY)
+        ? (deltaX > 0 ? 'ArrowRight' : 'ArrowLeft')
+        : (deltaY > 0 ? 'ArrowDown' : 'ArrowUp');
+    changeDirection({ key });
+});
+
+playBoard.addEventListener('pointercancel', () => {
+    swipeStartX = null;
+    swipeStartY = null;
+});
 
 controls.forEach((key) => {
     key.addEventListener('click', () => changeDirection({ key: key.dataset.key }));
