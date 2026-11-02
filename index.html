@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <!-- Configurações da página: título e caminho do CSS. -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="CSS/style.css">
+    <title>SNAKE GARDEN</title>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Cabeçalho: título, áudio e placar. -->
+        <div class="game__details">
+            <div class="game__title"><span aria-hidden="true">🌿</span> SNAKE GARDEN</div>
+            <div class="scoreboard" aria-live="polite">
+                <span class="score">Pontos: 0</span>
+                <span class="high-score">Recorde: 0</span>
+            </div>
+        </div>
+        <!-- Área de jogo; tamanho e aparência ficam em CSS/style.css. -->
+        <div class="play__board" role="img" aria-label="Tabuleiro do jogo da cobrinha"></div>
+        <!-- Controles para jogar em telas touch. -->
+        <div class="controls" aria-label="Controles do jogo">
+            <button type="button" data-key="ArrowLeft" class="icon__controls" aria-label="Mover para a esquerda">←</button>
+            <button type="button" data-key="ArrowUp" class="icon__controls" aria-label="Mover para cima">↑</button>
+            <button type="button" data-key="ArrowRight" class="icon__controls" aria-label="Mover para a direita">→</button>
+            <button type="button" data-key="ArrowDown" class="icon__controls" aria-label="Mover para baixo">↓</button>
+        </div>
+    </div>
+    <!-- Lógica do jogo fica em JS/script.js. -->
+    <script src="JS/script.js"></script>
+</body>
+</html>
