@@ -168,5 +168,5 @@ const positionSegment = (element, [x, y], rotation = 0) => {
 
 // Inicialização: posiciona a comida e inicia o ciclo do jogo.
 changeFoodPoisition();
-setIntervalId = setInterval(initGame, 125);
+setIntervalId = setInterval(initGame, 180);
 document.addEventListener('keydown', changeDirection);
