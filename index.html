@@ -4,7 +4,7 @@
     <!-- Configurações da página: título e caminho do CSS. -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="CSS/style.css?v=mobile-swipe">
+    <link rel="stylesheet" href="CSS/style.css?v=controller-food">
     <title>SNAKE GARDEN</title>
 </head>
 <body>
@@ -22,13 +22,13 @@
         <p class="swipe-hint">Deslize no tabuleiro ou use os controles abaixo.</p>
         <!-- Controles para jogar em telas touch. -->
         <div class="controls" aria-label="Controles do jogo">
-            <button type="button" data-key="ArrowLeft" class="icon__controls" aria-label="Mover para a esquerda">←</button>
-            <button type="button" data-key="ArrowUp" class="icon__controls" aria-label="Mover para cima">↑</button>
-            <button type="button" data-key="ArrowRight" class="icon__controls" aria-label="Mover para a direita">→</button>
-            <button type="button" data-key="ArrowDown" class="icon__controls" aria-label="Mover para baixo">↓</button>
+            <button type="button" data-key="ArrowUp" class="icon__controls control--up" aria-label="Mover para cima"></button>
+            <button type="button" data-key="ArrowLeft" class="icon__controls control--left" aria-label="Mover para a esquerda"></button>
+            <button type="button" data-key="ArrowRight" class="icon__controls control--right" aria-label="Mover para a direita"></button>
+            <button type="button" data-key="ArrowDown" class="icon__controls control--down" aria-label="Mover para baixo"></button>
         </div>
     </div>
     <!-- Lógica do jogo fica em JS/script.js. -->
-    <script src="JS/script.js?v=mobile-swipe"></script>
+    <script src="JS/script.js?v=controller-food"></script>
 </body>
 </html>
