@@ -209,7 +209,9 @@ body {
     height: calc(100% / var(--grid-size));
     object-fit: contain;
     transform-origin: center;
-    filter: drop-shadow(0 3px 2px rgb(18 66 36 / 48%));
+    filter:
+        drop-shadow(0 4px 2px rgb(18 66 36 / 55%))
+        drop-shadow(0 0 3px rgb(18 66 36 / 30%));
     transition: left 125ms linear, top 125ms linear, transform 125ms linear;
     will-change: left, top, transform;
 }
