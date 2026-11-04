@@ -117,6 +117,9 @@ body {
 /* Aparência da abóbora e da cobra. */
 .play__board .Food {
     display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template: minmax(0, 1fr) / minmax(0, 1fr);
     place-items: center;
     z-index: 1;
     filter: drop-shadow(0 2px 2px rgb(0 0 0 / 40%));
@@ -126,7 +129,7 @@ body {
     position: relative;
     display: grid;
     width: 76%;
-    height: 68%;
+    height: 76%;
     place-items: center;
     border: 2px solid #a8420c;
     border-radius: 45% 45% 42% 42%;
@@ -135,7 +138,6 @@ body {
     color: #382118;
     font-size: 0.58em;
     line-height: 1;
-    transform: scale(1.28);
 }
 
 .pumpkin::before {
@@ -151,6 +153,7 @@ body {
 
 .pumpkin::after {
     content: "▲  ▲";
+    white-space: nowrap;
     transform: translateY(-12%);
 }
 
