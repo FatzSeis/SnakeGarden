@@ -1,7 +1,7 @@
 /* Fonte e configuração global. */
 :root {
     --grid-size: 24;
-    color-scheme: light;
+    color-scheme: dark;
     font-family: "Trebuchet MS", Arial, sans-serif;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -21,9 +21,9 @@ body {
     margin: 0;
     padding: 24px 16px;
     background:
-        radial-gradient(ellipse at 15% 15%, rgb(255 255 255 / 62%) 0 2px, transparent 3px),
-        radial-gradient(ellipse at 80% 75%, rgb(255 255 255 / 52%) 0 2px, transparent 3px),
-        linear-gradient(145deg, #d8f3b2, #a9dc83 55%, #78bd66);
+        radial-gradient(ellipse at 15% 15%, rgb(255 151 49 / 30%) 0 2px, transparent 3px),
+        radial-gradient(ellipse at 80% 75%, rgb(255 151 49 / 22%) 0 2px, transparent 3px),
+        linear-gradient(145deg, #251535, #321b3b 55%, #17101f);
     background-size: 47px 43px, 61px 57px, auto;
 }
 
@@ -34,10 +34,11 @@ body {
     gap: 14px;
     padding: clamp(14px, 3vw, 24px);
     overflow: hidden;
-    border: 1px solid rgb(48 105 53 / 16%);
+    position: relative;
+    border: 1px solid rgb(255 151 49 / 24%);
     border-radius: 28px;
-    background: #f8fff0;
-    box-shadow: 0 22px 55px rgb(34 83 36 / 24%), 0 5px 12px rgb(34 83 36 / 12%);
+    background: #241a2d;
+    box-shadow: 0 22px 55px rgb(0 0 0 / 40%), 0 5px 12px rgb(255 117 24 / 12%);
 }
 
 /* Cabeçalho, título e placar. */
@@ -46,7 +47,7 @@ body {
     align-items: center;
     justify-content: space-between;
     gap: 12px;
-    color: #234a2b;
+    color: #ffe6c4;
 }
 
 .game__title {
@@ -72,9 +73,10 @@ body {
 .score,
 .high-score {
     padding: 8px 11px;
-    border: 1px solid #d5e9c7;
+    border: 1px solid #57405a;
     border-radius: 999px;
-    background: #edf8e5;
+    background: #38283f;
+    color: #ffd29b;
     font-size: clamp(0.75rem, 2.8vw, 0.95rem);
     font-weight: 700;
     white-space: nowrap;
@@ -90,103 +92,66 @@ body {
     user-select: none;
     grid-template: repeat(var(--grid-size), minmax(0, 1fr)) / repeat(var(--grid-size), minmax(0, 1fr));
     overflow: hidden;
-    border: 5px solid #418341;
+    border: 5px solid #8e461c;
     border-radius: 18px;
-    background-color: #83ce55;
+    background-color: #352b36;
     background-image:
-        linear-gradient(to right, transparent calc(100% - 1px), rgb(48 112 48 / 16%) calc(100% - 1px)),
-        linear-gradient(to bottom, transparent calc(100% - 1px), rgb(48 112 48 / 16%) calc(100% - 1px)),
-        linear-gradient(135deg, #91d965, #75c94e);
+        linear-gradient(to right, transparent calc(100% - 1px), rgb(255 167 78 / 12%) calc(100% - 1px)),
+        linear-gradient(to bottom, transparent calc(100% - 1px), rgb(255 167 78 / 12%) calc(100% - 1px)),
+        linear-gradient(135deg, #453442, #302638);
     background-size:
         calc(100% / var(--grid-size)) calc(100% / var(--grid-size)),
         calc(100% / var(--grid-size)) calc(100% / var(--grid-size)),
         auto;
-    box-shadow: inset 0 2px 8px rgb(31 91 30 / 18%);
+    box-shadow: inset 0 2px 8px rgb(0 0 0 / 30%);
 }
 
 /* Instrução de gesto para quem joga pelo celular. */
 .swipe-hint {
     margin: -4px 0 0;
-    color: #527254;
+    color: #c5a9c8;
     font-size: 0.85rem;
     text-align: center;
 }
 
-/* Aparência da comida e da cobra. */
+/* Aparência da abóbora e da cobra. */
 .play__board .Food {
     display: grid;
     place-items: center;
     z-index: 1;
-    filter: drop-shadow(0 2px 1px rgb(31 71 26 / 35%));
+    filter: drop-shadow(0 2px 2px rgb(0 0 0 / 40%));
 }
 
-.frog__face {
+.pumpkin {
     position: relative;
-    display: block;
+    display: grid;
     width: 76%;
-    height: 66%;
-    margin-top: 20%;
-    border-radius: 48% 48% 42% 42%;
-    background: var(--frog-main);
-    box-shadow: inset 0 -2px 0 var(--frog-shadow);
-    transform: scale(1.75);
-    transform-origin: center;
+    height: 68%;
+    place-items: center;
+    border: 2px solid #a8420c;
+    border-radius: 45% 45% 42% 42%;
+    background: repeating-linear-gradient(90deg, #ffae24 0 18%, #e87513 19% 34%);
+    box-shadow: inset 0 -3px 0 #b4470d, inset 0 2px 0 rgb(255 229 133 / 65%);
+    color: #382118;
+    font-size: 0.58em;
+    line-height: 1;
+    transform: scale(1.28);
 }
 
-.frog__face::before,
-.frog__face::after {
+.pumpkin::before {
     position: absolute;
-    top: -20%;
-    width: 34%;
-    height: 48%;
-    border-radius: 50%;
-    background:
-        radial-gradient(circle at 50% 50%, #153b2a 0 20%, transparent 23%),
-        var(--frog-main);
+    top: -18%;
+    left: 43%;
+    width: 18%;
+    height: 23%;
+    border-radius: 60% 20% 20% 20%;
+    background: #63863d;
     content: "";
 }
 
-.frog__face::before {
-    left: 3%;
-}
-
-.frog__face::after {
-    right: 3%;
-}
-
-.Food--green {
-    --frog-main: #39c96b;
-    --frog-shadow: #138744;
-}
-
-.Food--yellow {
-    --frog-main: #ffe15a;
-    --frog-shadow: #d3a91c;
-}
-
-.Food--orange {
-    --frog-main: #ff9a3c;
-    --frog-shadow: #d66b19;
-}
-
-.Food--blue {
-    --frog-main: #58c8ff;
-    --frog-shadow: #2384c2;
-}
-
-.Food--purple {
-    --frog-main: #bd82f2;
-    --frog-shadow: #8350bd;
-}
-
-.Food--red {
-    --frog-main: #ff5b61;
-    --frog-shadow: #c52e3e;
-}
-
-.Food--pink {
-    --frog-main: #ff8fc2;
-    --frog-shadow: #d34b91;
+.pumpkin::after {
+    content: "▲  ▲";
+    transform: translateY(-12%);
 }
 
 .play__board .snake__segment {
@@ -194,10 +159,10 @@ body {
     z-index: 1;
     width: calc(100% / var(--grid-size));
     height: calc(100% / var(--grid-size));
-    border: 1px solid #00652f;
+    border: 1px solid #5b2b18;
     border-radius: 38%;
-    background: linear-gradient(145deg, #20b65f, #008b43 78%);
-    box-shadow: inset 0 1px 2px rgb(255 255 255 / 28%), 0 1px 2px rgb(22 75 37 / 24%);
+    background: linear-gradient(145deg, #a8c94d, #607c2d 78%);
+    box-shadow: inset 0 1px 2px rgb(255 255 255 / 28%), 0 1px 2px rgb(0 0 0 / 35%);
     transition: left 180ms linear, top 180ms linear;
     will-change: left, top;
 }
@@ -210,8 +175,8 @@ body {
     object-fit: contain;
     transform-origin: center;
     filter:
-        drop-shadow(0 4px 2px rgb(18 66 36 / 55%))
-        drop-shadow(0 0 3px rgb(18 66 36 / 30%));
+        drop-shadow(0 4px 2px rgb(0 0 0 / 65%))
+        drop-shadow(0 0 3px rgb(255 146 40 / 30%));
     transition: left 180ms linear, top 180ms linear, transform 180ms linear;
     will-change: left, top, transform;
 }
@@ -233,10 +198,10 @@ body {
     width: 54px;
     height: 54px;
     place-items: center;
-    border: 1px solid #28633b;
+    border: 1px solid #b65b22;
     border-radius: 16px;
-    background: linear-gradient(145deg, #498d50, #28633b);
-    box-shadow: inset 0 2px 2px rgb(255 255 255 / 24%), 0 3px 0 #1d4c2c;
+    background: linear-gradient(145deg, #c36b28, #803b24);
+    box-shadow: inset 0 2px 2px rgb(255 255 255 / 24%), 0 3px 0 #532a2a;
     cursor: pointer;
     touch-action: manipulation;
     transition: filter 120ms ease, transform 120ms ease;
@@ -252,7 +217,7 @@ body {
 }
 
 .icon__controls:focus-visible {
-    outline: 3px solid #438d46;
+    outline: 3px solid #ffae24;
     outline-offset: 3px;
 }
 
@@ -270,6 +235,69 @@ body {
 
 .control--down {
     grid-area: down;
+}
+
+/* Tela de derrota sobreposta ao jogo. */
+.game-over[hidden] {
+    display: none;
+}
+
+.game-over {
+    position: absolute;
+    z-index: 5;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 18px;
+    border-radius: 28px;
+    background: rgb(15 9 22 / 82%);
+}
+
+.game-over__card {
+    width: min(100%, 340px);
+    padding: 28px 20px;
+    border: 1px solid #a64e25;
+    border-radius: 22px;
+    background: linear-gradient(145deg, #39243f, #241a2d);
+    box-shadow: 0 12px 40px rgb(0 0 0 / 45%);
+    color: #ffe6c4;
+    text-align: center;
+}
+
+.game-over__pumpkin {
+    display: block;
+    font-size: 3rem;
+}
+
+.game-over__card h1 {
+    margin: 8px 0;
+    color: #ff9f35;
+    font-size: clamp(1.8rem, 8vw, 2.5rem);
+}
+
+.game-over__record {
+    margin: 12px 0 22px;
+    color: #e6cce3;
+}
+
+.retry-button {
+    padding: 12px 20px;
+    border: 1px solid #ffb13b;
+    border-radius: 999px;
+    background: linear-gradient(145deg, #f28a24, #bd4d21);
+    color: #201522;
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.retry-button:hover {
+    filter: brightness(1.12);
+}
+
+.retry-button:focus-visible {
+    outline: 3px solid #ffe6c4;
+    outline-offset: 3px;
 }
 
 /* Ajustes para celulares estreitos. */

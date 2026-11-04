@@ -3,15 +3,16 @@ const playBoard = document.querySelector('.play__board');
 const scoreElement = document.querySelector('.score');
 const highScoreElement = document.querySelector('.high-score');
 const controls = document.querySelectorAll('.icon__controls');
+const gameOverElement = document.querySelector('.game-over');
+const gameOverRecordElement = document.querySelector('.game-over__record strong');
+const retryButton = document.querySelector('.retry-button');
 const GRID_SIZE = Number.parseInt(getComputedStyle(document.documentElement).getPropertyValue('--grid-size'), 10);
 const SWIPE_THRESHOLD = 24;
-// Paleta usada para sortear a cor de cada novo sapo.
-const frogColors = ['green', 'yellow', 'orange', 'blue', 'purple', 'red', 'pink'];
 const snakeSegments = [];
 const foodElement = document.createElement('div');
 foodElement.className = 'Food';
-foodElement.innerHTML = '<span class="frog__face"></span>';
-foodElement.setAttribute('aria-label', 'Sapo');
+foodElement.innerHTML = '<span class="pumpkin" aria-hidden="true"></span>';
+foodElement.setAttribute('aria-label', 'Abóbora');
 playBoard.append(foodElement);
 
 let GameOver = false;
@@ -22,11 +23,11 @@ let velocityX = 0, velocityY = 0;
 let setIntervalId;
 let score = 0;
 let highScore = Number(localStorage.getItem('high-score')) || 0;
-highScoreElement.innerHTML = `Recorde: ${highScore}`;
+highScoreElement.textContent = `Recorde: ${highScore}`;
 let hasPlayedAudio = false;
 let hasIncreasedSnakeBody = false;
 
-// Gera uma nova posição para o sapo.
+// Gera uma nova posição para a abóbora.
 const changeFoodPoisition = () => {
     const occupiedCells = new Set(snakeBody.map(([x, y]) => `${x},${y}`));
     occupiedCells.add(`${snakeX},${snakeY}`);
@@ -36,15 +37,14 @@ const changeFoodPoisition = () => {
         foodY = Math.floor(Math.random() * GRID_SIZE) + 1;
     } while (occupiedCells.has(`${foodX},${foodY}`));
 
-    const frogColor = frogColors[Math.floor(Math.random() * frogColors.length)];
-    foodElement.className = `Food Food--${frogColor}`;
     foodElement.style.gridArea = `${foodY} / ${foodX}`;
 };
 
 const handleGameOver = () => {
     clearInterval(setIntervalId);
-    alert('Game Over! Press OK to replay...');
-    location.reload();
+    gameOverRecordElement.textContent = String(highScore);
+    gameOverElement.hidden = false;
+    retryButton.focus();
 };
 
 // Entrada do teclado e dos botões direcionais.
@@ -100,6 +100,8 @@ controls.forEach((key) => {
     key.addEventListener('click', () => changeDirection({ key: key.dataset.key }));
 });
 
+retryButton.addEventListener('click', () => location.reload());
+
 // Atualiza posição, colisões, pontuação e desenho do tabuleiro.
 const initGame = () => {
     if (GameOver) return handleGameOver();
@@ -111,7 +113,7 @@ const initGame = () => {
         highScore = score >= highScore ? score : highScore;
         localStorage.setItem('high-score', highScore);
         scoreElement.innerText = `Pontos: ${score}`;
-        highScoreElement.innerHTML = `Recorde: ${highScore}`;
+        highScoreElement.textContent = `Recorde: ${highScore}`;
     }
 
     for (let i = snakeBody.length - 1; i > 0; i--) {
